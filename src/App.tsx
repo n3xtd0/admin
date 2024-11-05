@@ -4,7 +4,7 @@ import { mockDataProvider } from "./mockDataProvider";
 import { TournamentTypeList, TournamentTypeEdit, TournamentTypeCreate } from "./components/TournamentType";
 import { TournamentEventList, TournamentEventEdit, TournamentEventCreate } from "./components/TournamentEvent";
 import { PlayerList, PlayerEdit, PlayerCreate } from "./components/Player";
-import { TournamentEventResultList, TournamentEventResultEdit, TournamentEventResultCreate } from "./components/TournamentEventPlayers";
+import { TournamentEventResultList, TournamentEventResultEdit, TournamentEventResultCreate } from "./components/TournamentEventResult";
 
 const App = () => (
   <Admin dataProvider={mockDataProvider}>

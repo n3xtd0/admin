@@ -35,7 +35,7 @@ export const TournamentEventResultEdit = (props: EditProps) => (
         <SelectInput optionText="name" />
       </ReferenceInput>
       <ReferenceInput source="playerId" reference="players">
-        <SelectInput optionText="name" />
+        <SelectInput optionText={(record) => `${record.firstName} ${record.lastName}`} />
       </ReferenceInput>
     </SimpleForm>
   </Edit>

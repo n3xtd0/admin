@@ -42,12 +42,12 @@ export const mockDataProvider: DataProvider = {
       total: mockData[resource].length,
     });
   },
-  getOne: (resource, params) => {
-    const data = mockData[resource].find((item) => item.id === params.id);
+  getOne: (resource, { id }) => {
+    const data = mockData[resource].find((item) => +item.id === +id);
     return Promise.resolve({ data });
   },
-  getMany: (resource, params) => {
-    const data = mockData[resource].filter((item) => params.ids.includes(item.id));
+  getMany: (resource, { ids }) => {
+    const data = mockData[resource].filter((item) => ids.includes(item.id));
     return Promise.resolve({ data });
   },
   getManyReference: (resource, params) => {
