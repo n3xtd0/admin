@@ -1,7 +1,20 @@
-import React from 'react';
-import { List, Datagrid, TextField, ReferenceField, Edit, SimpleForm, ReferenceInput, SelectInput, Create } from 'react-admin';
+import React from "react";
+import {
+  List,
+  Datagrid,
+  TextField,
+  ReferenceField,
+  Edit,
+  SimpleForm,
+  ReferenceInput,
+  SelectInput,
+  Create,
+  ListProps,
+  EditProps,
+  CreateProps,
+} from "react-admin";
 
-export const TournamentEventPlayersList: React.FC = props => (
+export const TournamentEventPlayersList = (props: ListProps) => (
   <List {...props}>
     <Datagrid rowClick="edit">
       <TextField source="id" />
@@ -15,7 +28,7 @@ export const TournamentEventPlayersList: React.FC = props => (
   </List>
 );
 
-export const TournamentEventPlayersEdit: React.FC = props => (
+export const TournamentEventPlayersEdit = (props: EditProps) => (
   <Edit {...props}>
     <SimpleForm>
       <ReferenceInput source="tournamentEventId" reference="tournamentEvents">
@@ -28,7 +41,7 @@ export const TournamentEventPlayersEdit: React.FC = props => (
   </Edit>
 );
 
-export const TournamentEventPlayersCreate: React.FC = props => (
+export const TournamentEventPlayersCreate = (props: CreateProps) => (
   <Create {...props}>
     <SimpleForm>
       <ReferenceInput source="tournamentEventId" reference="tournamentEvents">

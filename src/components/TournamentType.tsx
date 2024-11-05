@@ -1,7 +1,7 @@
-import React from 'react';
-import { List, Datagrid, TextField, Edit, SimpleForm, TextInput, Create } from 'react-admin';
+import React from "react";
+import { List, Datagrid, TextField, Edit, SimpleForm, TextInput, Create, ListProps, EditProps, CreateProps } from "react-admin";
 
-export const TournamentTypeList: React.FC = props => (
+export const TournamentTypeList = (props: ListProps) => (
   <List {...props}>
     <Datagrid rowClick="edit">
       <TextField source="id" />
@@ -10,7 +10,7 @@ export const TournamentTypeList: React.FC = props => (
   </List>
 );
 
-export const TournamentTypeEdit: React.FC = props => (
+export const TournamentTypeEdit = (props: EditProps) => (
   <Edit {...props}>
     <SimpleForm>
       <TextInput disabled source="id" />
@@ -19,7 +19,7 @@ export const TournamentTypeEdit: React.FC = props => (
   </Edit>
 );
 
-export const TournamentTypeCreate: React.FC = props => (
+export const TournamentTypeCreate = (props: CreateProps) => (
   <Create {...props}>
     <SimpleForm>
       <TextInput source="name" />
