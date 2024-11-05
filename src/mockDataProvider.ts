@@ -1,11 +1,11 @@
 import { DataProvider } from "ra-core";
-import { TournamentType, TournamentEvent, Player, TournamentEventPlayer } from "./types";
+import { TournamentType, TournamentEvent, Player, TournamentEventResult } from "./types";
 
 type Data = {
   tournamentTypes: TournamentType[];
   tournamentEvents: TournamentEvent[];
   players: Player[];
-  tournamentEventPlayers: TournamentEventPlayer[];
+  tournamentEventResults: TournamentEventResult[];
 };
 
 const mockData: Data = {
@@ -23,7 +23,7 @@ const mockData: Data = {
     { id: 2, firstName: "Jane", lastName: "Smith", email: "jane@example.com" },
     { id: 3, firstName: "Bob", lastName: "Johnson", email: "bob@example.com" },
   ],
-  tournamentEventPlayers: [
+  tournamentEventResults: [
     { id: 1, tournamentEventId: 1, playerId: 1, registrationDate: "2023-07-01", status: "registered" },
     { id: 2, tournamentEventId: 1, playerId: 2, registrationDate: "2023-07-02", status: "confirmed" },
     { id: 3, tournamentEventId: 2, playerId: 2, registrationDate: "2023-11-20", status: "registered" },

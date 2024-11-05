@@ -14,7 +14,7 @@ import {
   CreateProps,
 } from "react-admin";
 
-export const TournamentEventPlayersList = (props: ListProps) => (
+export const TournamentEventResultList = (props: ListProps) => (
   <List {...props}>
     <Datagrid rowClick="edit">
       <TextField source="id" />
@@ -28,7 +28,7 @@ export const TournamentEventPlayersList = (props: ListProps) => (
   </List>
 );
 
-export const TournamentEventPlayersEdit = (props: EditProps) => (
+export const TournamentEventResultEdit = (props: EditProps) => (
   <Edit {...props}>
     <SimpleForm>
       <ReferenceInput source="tournamentEventId" reference="tournamentEvents">
@@ -41,7 +41,7 @@ export const TournamentEventPlayersEdit = (props: EditProps) => (
   </Edit>
 );
 
-export const TournamentEventPlayersCreate = (props: CreateProps) => (
+export const TournamentEventResultCreate = (props: CreateProps) => (
   <Create {...props}>
     <SimpleForm>
       <ReferenceInput source="tournamentEventId" reference="tournamentEvents">

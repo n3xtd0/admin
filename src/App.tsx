@@ -4,33 +4,14 @@ import { mockDataProvider } from "./mockDataProvider";
 import { TournamentTypeList, TournamentTypeEdit, TournamentTypeCreate } from "./components/TournamentType";
 import { TournamentEventList, TournamentEventEdit, TournamentEventCreate } from "./components/TournamentEvent";
 import { PlayerList, PlayerEdit, PlayerCreate } from "./components/Player";
-import {
-  TournamentEventPlayersList,
-  TournamentEventPlayersEdit,
-  TournamentEventPlayersCreate,
-} from "./components/TournamentEventPlayers";
+import { TournamentEventResultList, TournamentEventResultEdit, TournamentEventResultCreate } from "./components/TournamentEventPlayers";
 
 const App = () => (
   <Admin dataProvider={mockDataProvider}>
-    <Resource
-      name="tournamentTypes"
-      list={TournamentTypeList}
-      edit={TournamentTypeEdit}
-      create={TournamentTypeCreate}
-    />
-    <Resource
-      name="tournamentEvents"
-      list={TournamentEventList}
-      edit={TournamentEventEdit}
-      create={TournamentEventCreate}
-    />
+    <Resource name="tournamentTypes" list={TournamentTypeList} edit={TournamentTypeEdit} create={TournamentTypeCreate} />
+    <Resource name="tournamentEvents" list={TournamentEventList} edit={TournamentEventEdit} create={TournamentEventCreate} />
+    <Resource name="tournamentEventResults" list={TournamentEventResultList} edit={TournamentEventResultEdit} create={TournamentEventResultCreate} />
     <Resource name="players" list={PlayerList} edit={PlayerEdit} create={PlayerCreate} />
-    <Resource
-      name="tournamentEventPlayers"
-      list={TournamentEventPlayersList}
-      edit={TournamentEventPlayersEdit}
-      create={TournamentEventPlayersCreate}
-    />
   </Admin>
 );
 

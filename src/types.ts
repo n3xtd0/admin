@@ -7,7 +7,7 @@ export interface TournamentType {
 export interface TournamentEvent {
   id: number;
   name: string;
-  tournamentTypeId: number;
+  tournamentTypeId: TournamentType["id"];
   startDate: string;
   endDate: string;
   location?: string;
@@ -22,10 +22,10 @@ export interface Player {
   phoneNumber?: string;
 }
 
-export interface TournamentEventPlayer {
+export interface TournamentEventResult {
   id: number;
-  tournamentEventId: number;
-  playerId: number;
+  tournamentEventId: TournamentEvent["id"];
+  playerId: Player["id"];
   registrationDate: string;
   status: "registered" | "confirmed" | "cancelled";
 }
