@@ -1,31 +1,53 @@
 import React from "react";
-import { List, Datagrid, TextField, EmailField, Edit, SimpleForm, TextInput, Create } from "react-admin";
+import {
+  List,
+  Datagrid,
+  TextField,
+  EmailField,
+  DateField,
+  Edit,
+  Create,
+  SimpleForm,
+  TextInput,
+  DateInput,
+  EditProps,
+  CreateProps,
+  ListProps,
+} from "react-admin";
 
-export const PlayerList = (props) => (
+export const PlayerList = (props: ListProps) => (
   <List {...props}>
-    <Datagrid rowClick='edit'>
-      <TextField source='id' />
-      <TextField source='name' />
-      <EmailField source='email' />
+    <Datagrid>
+      <TextField source="id" />
+      <TextField source="firstName" />
+      <TextField source="lastName" />
+      <EmailField source="email" />
+      <DateField source="dateOfBirth" />
+      <TextField source="phoneNumber" />
     </Datagrid>
   </List>
 );
 
-export const PlayerEdit = (props) => (
+export const PlayerEdit = (props: EditProps) => (
   <Edit {...props}>
     <SimpleForm>
-      <TextInput disabled source='id' />
-      <TextInput source='name' />
-      <TextInput source='email' />
+      <TextInput source="firstName" />
+      <TextInput source="lastName" />
+      <TextInput source="email" />
+      <DateInput source="dateOfBirth" />
+      <TextInput source="phoneNumber" />
     </SimpleForm>
   </Edit>
 );
 
-export const PlayerCreate = (props) => (
+export const PlayerCreate = (props: CreateProps) => (
   <Create {...props}>
     <SimpleForm>
-      <TextInput source='name' />
-      <TextInput source='email' />
+      <TextInput source="firstName" />
+      <TextInput source="lastName" />
+      <TextInput source="email" />
+      <DateInput source="dateOfBirth" />
+      <TextInput source="phoneNumber" />
     </SimpleForm>
   </Create>
 );
