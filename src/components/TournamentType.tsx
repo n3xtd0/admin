@@ -1,4 +1,3 @@
-import React from "react";
 import { List, Datagrid, TextField, Edit, SimpleForm, TextInput, Create, ListProps, EditProps, CreateProps } from "react-admin";
 
 export const TournamentTypeList = (props: ListProps) => (

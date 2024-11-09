@@ -1,5 +1,6 @@
-import { DataProvider } from "ra-core";
+import { DataProvider, GetListParams } from "ra-core";
 import { TournamentType, TournamentEvent, Player, TournamentEventResult } from "./types";
+import { CreateParams, DeleteManyParams, DeleteParams, RaRecord, UpdateManyParams, UpdateParams } from "react-admin";
 
 type Data = {
   tournamentTypes: TournamentType[];
@@ -32,57 +33,59 @@ const mockData: Data = {
 };
 
 export const mockDataProvider: DataProvider = {
-  getList: (resource, params) => {
+  getList: <RecordType extends RaRecord>(resource: string, params: GetListParams) => {
     const { page, perPage } = params.pagination;
     const start = (page - 1) * perPage;
     const end = start + perPage;
-    const data = mockData[resource].slice(start, end);
+    const data = mockData[resource as keyof Data]?.slice(start, end) as unknown as RecordType[];
     return Promise.resolve({
       data,
-      total: mockData[resource].length,
+      total: mockData[resource as keyof Data]?.length ?? 0,
     });
   },
-  getOne: (resource, { id }) => {
-    const data = mockData[resource].find((item) => +item.id === +id);
+  getOne: <RecordType extends RaRecord>(resource: string, { id }: { id: RecordType["id"] }) => {
+    const data = mockData[resource as keyof Data].find((item) => +item.id === +id) as unknown as RecordType;
     return Promise.resolve({ data });
   },
-  getMany: (resource, { ids }) => {
-    const data = mockData[resource].filter((item) => ids.includes(item.id));
+  getMany: <RecordType extends RaRecord>(resource: string, { ids }: { ids: RecordType["id"][] }) => {
+    const data = mockData[resource as keyof Data].filter((item) => ids.includes(item.id)) as unknown as RecordType[];
     return Promise.resolve({ data });
   },
-  getManyReference: (resource, params) => {
+  getManyReference: <RecordType extends RaRecord>(resource: string, params: { target: string; id: RecordType["id"] }) => {
     const { target, id } = params;
-    const data = mockData[resource].filter((item) => item[target] === id);
+    const data = mockData[resource as keyof Data].filter((item) => (item as any)[target] === id) as unknown as RecordType[];
     return Promise.resolve({
       data,
       total: data.length,
     });
   },
-  create: (resource, params): Promise<{ data: any }> => {
-    const newId = Math.max(...mockData[resource].map((item) => item.id)) + 1;
-    const newItem = { ...params.data, id: newId };
-    mockData[resource].push(newItem);
+  create: <RecordType extends RaRecord>(resource: string, params: CreateParams<RecordType>) => {
+    const newId = Math.max(...mockData[resource as keyof Data].map((item) => item.id)) + 1;
+    const newItem = { ...params.data, id: newId } as unknown as RecordType;
+    mockData[resource as keyof Data].push(newItem as any);
     return Promise.resolve({ data: newItem });
   },
-  update: (resource, params) => {
-    const index = mockData[resource].findIndex((item) => item.id === params.id);
-    mockData[resource][index] = { ...mockData[resource][index], ...params.data };
-    return Promise.resolve({ data: mockData[resource][index] });
+  update: <RecordType extends RaRecord>(resource: string, params: UpdateParams<RecordType>) => {
+    const index = mockData[resource as keyof Data].findIndex((item) => item.id === params.id);
+    mockData[resource as keyof Data][index] = { ...mockData[resource as keyof Data][index], ...params.data };
+    return Promise.resolve({ data: mockData[resource as keyof Data][index] as unknown as RecordType });
   },
-  updateMany: (resource, params) => {
+  updateMany: <RecordType extends RaRecord>(resource: string, params: UpdateManyParams<RecordType>) => {
     const updatedIds = params.ids;
-    mockData[resource] = mockData[resource].map((item) => (updatedIds.includes(item.id) ? { ...item, ...params.data } : item));
+    mockData[resource as keyof Data] = mockData[resource as keyof Data].map((item) => 
+      updatedIds.includes(item.id) ? { ...item, ...params.data } : item
+    ) as any;
     return Promise.resolve({ data: updatedIds });
   },
-  delete: (resource, params) => {
-    const index = mockData[resource].findIndex((item) => item.id === params.id);
-    const deletedItem = mockData[resource][index];
-    mockData[resource].splice(index, 1);
+  delete: <RecordType extends RaRecord>(resource: string, params: DeleteParams) => {
+    const index = mockData[resource as keyof Data].findIndex((item) => item.id === params.id);
+    const deletedItem = mockData[resource as keyof Data][index] as unknown as RecordType;
+    mockData[resource as keyof Data].splice(index, 1);
     return Promise.resolve({ data: deletedItem });
   },
-  deleteMany: (resource, params) => {
+  deleteMany: (resource: string, params: DeleteManyParams) => {
     const deletedIds = params.ids;
-    mockData[resource] = mockData[resource].filter((item) => !deletedIds.includes(item.id));
+    mockData[resource as keyof Data] = mockData[resource as keyof Data].filter((item) => !deletedIds.includes(item.id)) as any;
     return Promise.resolve({ data: deletedIds });
   },
 };
