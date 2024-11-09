@@ -1,4 +1,17 @@
-- name: Setup Node.js environment
-- uses: actions/setup-node@v4.1.0
-  with:
-    node-version: 20.17.0
+name: Deploy
+
+on:
+  push:
+    branches: [ "main" ]
+
+jobs:
+  setup-node:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4.1.0
+        with:
+          node-version: 20.17.0
+          cache: npm
+      - run: npm ci
+      - run: npm run build
