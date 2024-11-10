@@ -1,7 +1,7 @@
 ---
 deployment:
   tasks:
-    - export DEPLOYPATH=/home/canahlkr/public_html/admin/
+    - export DEPLOYPATH=/home/canahlkr/public_html/admin
     - export REPOPATH=/home/canahlkr/repositories/admin
     - /bin/cp -R ${REPOPATH}/dist/* ${DEPLOYPATH}
     - /bin/cp ${REPOPATH}/public/.htaccess ${DEPLOYPATH}
