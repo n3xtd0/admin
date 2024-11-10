@@ -1,6 +1,5 @@
 ---
 deployment:
   tasks:
-    - export DEPLOYPATH=/home/canahlkr/public_html/admin/dist/
-    - /bin/cp index.html $DEPLOYPATH
-    - /bin/cp assets/index-*.js $DEPLOYPATH/assets/
+    - export DEPLOYPATH=/home/canahlkr/public_html/admin/
+    - /bin/cp -R dist/* $DEPLOYPATH
