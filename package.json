@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "NODE_OPTIONS='--max_old_space_size=2048' tsc && NODE_OPTIONS='--max_old_space_size=2048' vite build && cp public/.htaccess dist/",
+    "build": "NODE_OPTIONS='--max_old_space_size=1024 --wasm-memory-size-mb=512' tsc && NODE_OPTIONS='--max_old_space_size=1024 --wasm-memory-size-mb=512' vite build && cp public/.htaccess dist/",
     "lint": "eslint src --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
     "predeploy": "npm run build",
